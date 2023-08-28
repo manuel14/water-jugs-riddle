@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div id="steps" style="width:100px; display:flex; justify-content: center; align-items: center;" class="steps"></div>
+            {% if steps %}
+                <h1>Steps</h1>
+                <ol type="1">
+                {% for step in steps %}
+                
+                {% if step.operation == 'fill' %}
+                    <li style="font-size: 24px;">{{step.operation}} {{step.jug}} Jug with {{step.amount}}, x={{step.x}}, y={{step.y}}</li>
+                {% elif step.operation == 'empty'  %}
+                    <li style="font-size: 24px">{{step.operation}} {{step.jug}} Jug, x={{step.x}}, y={{step.y}}</li>
+                {% else %}
+                    <li style="font-size: 24px;">{{step.operation}} {{step.amount}} from {{step.from}} Jug to {{step.to}} Jug, x={{step.x}}, y={{step.y}}
+                    </li>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+                    <h2>No Solution</h2>
+            {% endif %}
+            </ol>
+            <button
+                style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; font-size: 16px;"
+                type="submit" onclick="window.location='/' ">Reset</button>
+        </div>
+    </body>
+</html>

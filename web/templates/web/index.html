@@ -1,0 +1,22 @@
+<html>
+   <body>
+    <div id="steps-container">
+        <form id="steps-form" 
+            style="margin: 10vmax 50vmax 10vmax 40vmax; width: 250px; flex-direction: column;" 
+            action="{% url 'jugs_riddle' %}"
+            method="post" 
+            id="jugs_riddle">
+            {% csrf_token %}
+            <label style="font-size: 24px; margin-bottom: 5px;" for="x">Enter first jug capacity</label>
+            <input style="font-size: 24px; margin-bottom: 5px;" type="number" min=1 id="x" name="x" required>
+            <label style="font-size: 24px; margin-bottom: 5px;" for="y">Enter second jug capacity</label>
+            <input style="font-size: 24px; margin-bottom: 5px;" type="number" min=1 id="y" name="y" required>
+            <label  style="font-size: 24px; margin-bottom: 5px;" for="z">Enter Amount to meassure</label>
+            <input style="font-size: 24px; margin-bottom: 10px" type="number" min=1 id="z" name="z" required>
+            <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; font-size: 16px;" 
+                >Submit</button>
+        </form>
+    </div>
+    
+    </body>
+</html>
