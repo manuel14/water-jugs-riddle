@@ -2,6 +2,10 @@ from .helpers import division_remainder
 
 
 class Jug():
+    """
+    Represents a a jug object
+    """
+
     def __init__(self, capacity: int, name: str) -> None:
         self.capacity = capacity
         self.name = name
@@ -15,6 +19,9 @@ class Jug():
 
 
 class Solution():
+    """
+    Class to represent the solution entity that holds the steps information
+    """
 
     def __init__(self, j1: int, j2: int, z: int) -> None:
         self.j1 = j1
@@ -25,8 +32,7 @@ class Solution():
 
     def minSteps(self):
         # time complexity is O(n) where n is the greater value between j1 and j2
-        #  space complexity O(n)
-        # try both x being the jug filled and y being the jug filled
+        # space complexity O(n) where n is the length of steps
         j1 = self.j1
         j2 = self.j2
         if j2 > j1:
@@ -35,19 +41,22 @@ class Solution():
             j1 = temp
         if (self.z % (division_remainder(j1, j2)) != 0):
             # if this condition is not met it means there is a division remainder between j1 and j1
-            # that will be equal to z eventually
+            # that will be equal to z eventually, aka there is a solution possible
             return []
-        self.steps_j1 = self.steps(Jug(capacity=self.j1, name="x"), Jug(
+        self.steps_j1 = self._steps(Jug(capacity=self.j1, name="x"), Jug(
             capacity=self.j2, name="y"), self.z)
-        self.steps_j2 = self.steps(Jug(capacity=self.j2, name="y"),
-                                   Jug(capacity=self.j1, name="x"), self.z)
+        self.steps_j2 = self._steps(Jug(capacity=self.j2, name="y"),
+                                    Jug(capacity=self.j1, name="x"), self.z)
         # return most efficient solution
         if len(self.steps_j1) <= len(self.steps_j2):
             return self.steps_j1
         return self.steps_j2
 
-    def steps(self, toJugCap: Jug, fromJugCap: Jug, amountToMeassure: int) -> list[dict]:
-        # TODO if possible make a type for steps list
+    def _steps(self, toJugCap: Jug, fromJugCap: Jug, amountToMeassure: int):
+        """
+        This method pours water always from FromJugCap into toJugCap
+        until one of the two jugs is equal to amountToMeassure
+        """
         fromJugCap.fill()
         steps = []
         steps.append(
@@ -71,7 +80,6 @@ class Solution():
                 break
             # If fromJugCap is empty fill it
             if fromJugCap.state == 0:
-                # fromJugCap.state = fromJugCap.capacity
                 fromJugCap.fill()
                 steps.append(
                     {"operation": "fill", "jug": fromJugCap.name, "amount": fromJugCap.capacity, toJugCap.name: toJugCap.state,

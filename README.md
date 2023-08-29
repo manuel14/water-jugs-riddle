@@ -8,4 +8,4 @@ docker build -f Dockerfile -t docker-django-v0.0:latest .
 
 # Running the project
 
-docker run -it --env-file ./.env -p 8000:8000 docker-django-v0.0
+docker run -it -p 8000:8000 docker-django-v0.0
