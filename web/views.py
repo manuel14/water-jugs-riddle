@@ -21,7 +21,7 @@ def jugs_riddle_api(request):
     except TypeError:
         return JsonResponse({"steps": []})
     if any(elem < 0 or elem == 0 for elem in [x, y, z]):
-        return JsonResponse({"teps": []})
+        return JsonResponse({"steps": []})
     sol = Solution(x, y, z)
     steps = sol.minSteps()
     return JsonResponse({"steps": steps})
