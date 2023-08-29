@@ -9,3 +9,8 @@ docker build -f Dockerfile -t docker-django-v0.0:latest .
 # Running the project
 
 docker run -it -p 8000:8000 docker-django-v0.0
+
+# Running tests
+
+docker exec -it <container_id> /bin/bash
+python -m unittest web/tests.py
